@@ -6,6 +6,9 @@
 
     function SitesHasher(shaFunction) {
       this.shaFunction = shaFunction;
+      if (this.shaFunction == null) {
+        throw "Need a sha function";
+      }
     }
 
     SitesHasher.prototype.generate = function(sites) {
@@ -28,7 +31,7 @@
   })();
 
   if (typeof exports !== 'undefined') {
-    exports.SitesHasher = SitesHasher;
+    module.exports = SitesHasher;
   } else {
     BH.Lib.SitesHasher = SitesHasher;
   }

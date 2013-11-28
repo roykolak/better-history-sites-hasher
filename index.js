@@ -4,8 +4,9 @@
 
   SitesHasher = (function() {
 
-    function SitesHasher(shaFunction) {
+    function SitesHasher(shaFunction, scope) {
       this.shaFunction = shaFunction;
+      this.scope = scope != null ? scope : null;
       if (this.shaFunction == null) {
         throw "Need a sha function";
       }
@@ -23,7 +24,7 @@
         return _results;
       })();
       stringifiedData = data.sort().join('|');
-      return this.shaFunction(stringifiedData);
+      return this.shaFunction.apply(this.scope, [stringifiedData]);
     };
 
     return SitesHasher;

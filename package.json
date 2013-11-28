@@ -1,6 +1,6 @@
 {
   "name": "better-history-sites-hasher",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "coffee-script": "1.6.3"
   },

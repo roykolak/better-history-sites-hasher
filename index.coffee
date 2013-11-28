@@ -1,5 +1,6 @@
 class SitesHasher
   constructor: (@shaFunction) ->
+    throw "Need a sha function" unless @shaFunction?
 
   generate: (sites) ->
     data = for site in sites
@@ -8,6 +9,6 @@ class SitesHasher
     @shaFunction(stringifiedData)
 
 if typeof exports != 'undefined'
-  exports.SitesHasher = SitesHasher
+  module.exports = SitesHasher
 else
   BH.Lib.SitesHasher = SitesHasher

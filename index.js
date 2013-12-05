@@ -19,7 +19,7 @@
         _results = [];
         for (_i = 0, _len = sites.length; _i < _len; _i++) {
           site = sites[_i];
-          _results.push("" + site.url + ": " + (site.tags.join(', ')));
+          _results.push("" + site.url + ": " + (site.tags.sort().join(', ')));
         }
         return _results;
       })();

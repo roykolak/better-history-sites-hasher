@@ -4,7 +4,7 @@ class SitesHasher
 
   generate: (sites) ->
     data = for site in sites
-      "#{site.url}: #{site.tags.join(', ')}"
+      "#{site.url}: #{site.tags.sort().join(', ')}"
     stringifiedData = data.sort().join('|')
 
     @shaFunction.apply @scope, [stringifiedData]

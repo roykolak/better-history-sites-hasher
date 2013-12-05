@@ -13,18 +13,21 @@
     }
 
     SitesHasher.prototype.generate = function(sites) {
-      var data, site, stringifiedData;
-      data = (function() {
-        var _i, _len, _results;
-        _results = [];
-        for (_i = 0, _len = sites.length; _i < _len; _i++) {
-          site = sites[_i];
-          _results.push("" + site.url + ": " + (site.tags.sort().join(', ')));
+      var compiledString, data, site, stringifiedData, _i, _len;
+      data = [];
+      for (_i = 0, _len = sites.length; _i < _len; _i++) {
+        site = sites[_i];
+        if (site.tags.length > 0) {
+          compiledString = "" + site.url + ": " + (site.tags.sort().join(', '));
+          data.push(compiledString);
         }
-        return _results;
-      })();
+      }
       stringifiedData = data.sort().join('|');
-      return this.shaFunction.apply(this.scope, [stringifiedData]);
+      if (data.length === 0) {
+        return "";
+      } else {
+        return this.shaFunction.apply(this.scope, [stringifiedData]);
+      }
     };
 
     return SitesHasher;
